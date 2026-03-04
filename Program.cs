@@ -33,6 +33,21 @@ namespace Schuelerverwaltung
                         /// Schüler einsehen
                         SchuelerEinsehen();
                         break;
+                    case '2':
+                        KonsoleVorbereiten("SCHÜLER HINZUFÜGEN");
+                        /// Schüler hinzufügen
+                        SchuelerHinzufuegen();
+                        break;
+                    case '3':
+                        KonsoleVorbereiten("SCHÜLER BEARBEITEN");
+                        /// Schüler bearbeiten
+                        SchuelerBearbeiten();
+                        break;
+                    case '4':
+                        KonsoleVorbereiten("SCHÜLER LÖSCHEN");
+                        /// Schüler löschen
+                        SchuelerLoeschen();
+                        break;
                     case 'q': /// Beenden (Das Programm)
                         programmLaeuft = false;
                         break;
@@ -63,12 +78,77 @@ namespace Schuelerverwaltung
             Console.WriteLine($"--- {titel} ---");
         }
 
+
+
         static void SchuelerEinsehen()
         {
-            Console.WriteLine("Schüler einsehen");
+            Console.Clear();
+            Console.WriteLine("=== SCHÜLER-SUCHE ===");
+            Console.WriteLine("Hinweis: Suche nach Vorname, Nachname oder Klasse möglich.");
+            Console.Write("Suchbegriff eingeben: ");
+
+            string input = Console.ReadLine();
+
+            /// Den Manager nach Ergebnissen fragen
+            var ergebnisse = manager.Suche(input);
+
+            Console.WriteLine(); 
+
+            if (!ergebnisse.Any())
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Keine Schüler für '{input}' gefunden.");
+                Console.ResetColor();
+            }
+            else
+            {
+                /// Tabelle mit BetterConsoleTables erstellen
+                var table = new Table(new ColumnHeader[]
+                {
+                new ColumnHeader("ID"),
+                new ColumnHeader("Vorname"),
+                new ColumnHeader("Nachname"),
+                new ColumnHeader("Klasse")
+                });
+
+                foreach (var s in ergebnisse)
+                {
+                    /// Wir zeigen nur den Anfang der GUID an, damit die Tabelle kompakt bleibt
+                    string shortId = s.Id.ToString().Substring(0, 8);
+                    table.AddRow(shortId, s.Vorname, s.Nachname, s.Klasse);
+                }
+                
+                Console.WriteLine(table.ToString());
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"Gefundene Einträge: {ergebnisse.Count()}");
+                Console.ResetColor();
+            }
+
+            Console.WriteLine("\nBeliebige Taste drücken für Menü...");
             Console.ReadKey(true);
         }
 
-        //static void
+
+
+        static void SchuelerHinzufuegen()
+        {
+            Console.WriteLine("Schüler hinzufügen");
+            Console.ReadKey(true);
+        }
+
+        static void SchuelerBearbeiten()
+        {
+            Console.WriteLine("Schüler bearbeiten");
+            Console.ReadKey(true);
+        }
+
+        static void SchuelerLoeschen()
+        {
+            Console.WriteLine("Schüler löschen");
+            Console.ReadKey(true);
+        }
+
+
     }
 }
