@@ -12,3 +12,11 @@ SchuelerVerwaltung/
 ├── Logic/
 │   └── SchuelerManager.cs   // Suchlogik und Validierung
 └── Program.cs               // Benutzermenü und Konsolen-Interaktion
+
+4. NuGet Package hinzugefügt.
+5. Modellklasse Schueler.cs erstellt.
+6. Logic-Klasse SchuelerManager.cs erstellt.
+7. Funktionalität für die Verwaltung von Schülern implementiert (Hinzufügen, Anzeigen, Suchen, Löschen) Läuft noch nicht einwandfrei. Keine Speicherung vorhanden.
+8. Testen der Funktionen in Program.cs.
+9. Implementierung der Funktion "Einsehen" der Schülerliste in Program.cs.
+10. 
