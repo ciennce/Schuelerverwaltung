@@ -21,5 +21,10 @@
         /// Nachname des Schülers.
         /// </summary>
         public string Nachname { get; set; }
+
+        /// <summary>
+        /// Klasse, in der der Schüler eingeschrieben ist.
+        /// </summary>
+        public string Klasse { get; set; }
     }
 }
