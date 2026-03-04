@@ -13,9 +13,10 @@ namespace Schuelerverwaltung.Logic
         public SchuelerManager()
         {
             // Beispiel-Daten, damit beim Start schon etwas zum Suchen vorhanden ist.
-            schuelerListe.Add(new Schueler { Vorname = "Max", Nachname = "Mustermann", Klasse = "10A" });
-            schuelerListe.Add(new Schueler { Vorname = "Anna", Nachname = "Müller", Klasse = "9B" });
-            schuelerListe.Add(new Schueler { Vorname = "Laura", Nachname = "Schmidt", Klasse = "10A" });
+            schuelerListe.Add(new Schueler { Vorname = "Max", Nachname = "Mustermann", Klasse = "10A", Mathematik = "2", Deutsch = "2+", Englisch = "3-", Biologie = "4", Geschichte = "3", Kunst = "", Informatik = "", Sport = "", Musik = "", Physik = "", Chemie = "", Sozialwissenschaften = "", Französisch = "", Latein = "", Spanisch = "", Philosophie = "", KatholischeReligion = "", EvangelischeReligion = "", IslamischeReligion = "", Literatur = "" });
+            schuelerListe.Add(new Schueler { Vorname = "Laura", Nachname = "Schmidt", Klasse = "10C", Mathematik = "1", Deutsch = "2", Englisch = "2+", Biologie = "4", Geschichte = "3", Kunst = "", Informatik = "", Sport = "", Musik = "", Physik = "", Chemie = "", Sozialwissenschaften = "", Französisch = "", Latein = "", Spanisch = "", Philosophie = "", KatholischeReligion = "", EvangelischeReligion = "", IslamischeReligion = "", Literatur = "" });
+            schuelerListe.Add(new Schueler { Vorname = "Tim", Nachname = "Reuter", Klasse = "5F", Mathematik = "4", Deutsch = "5", Englisch = "2", Biologie = "4", Geschichte = "3", Kunst = "", Informatik = "", Sport = "", Musik = "", Physik = "", Chemie = "", Sozialwissenschaften = "", Französisch = "", Latein = "", Spanisch = "", Philosophie = "", KatholischeReligion = "", EvangelischeReligion = "", IslamischeReligion = "", Literatur = "" });
+
         }
 
         /// <summary>

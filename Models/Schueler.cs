@@ -15,22 +15,50 @@
         /// <summary>
         /// Vorname des Schülers.
         /// </summary>
-        public string Vorname { get; set; }
+        public string Vorname { get; set; } = string.Empty;
 
         /// <summary>
         /// Nachname des Schülers.
         /// </summary>
-        public string Nachname { get; set; }
+        public string Nachname { get; set; } = string.Empty;
 
         /// <summary>
         /// Klasse, in der der Schüler eingeschrieben ist.
         /// </summary>
-        public string Klasse { get; set; }
+        public string Klasse { get; set; } = string.Empty;
 
         /// Notenschnitt des Schülers.
         
         public int Notenschnitt { get; set; }
         
-        public String Faecher { get; set; }
+        public string Faecher { get; set; } = string.Empty;
+
+
+        // Fächer
+
+        public string Mathematik { get; set; } = string.Empty;
+        public string Deutsch { get; set; } = string.Empty;
+        public string Englisch { get; set; } = string.Empty;
+        public string Biologie { get; set; } = string.Empty;
+        public string Geschichte { get; set; } = string.Empty;
+        public string Kunst { get; set; } = string.Empty; 
+        public string Informatik { get; set; } = string.Empty;
+        public string Sport { get; set; } = string.Empty;  
+        public string Musik { get; set; } = string.Empty;
+        public string Physik { get; set; } = string.Empty;
+        public string Chemie { get; set; } = string.Empty;
+        public string Sozialwissenschaften { get; set; } = string.Empty;
+        public string Französisch { get; set; } = string.Empty;
+        public string Latein { get; set; } = string.Empty;
+        public string Spanisch { get; set; } = string.Empty;
+        public string Philosophie { get; set; } = string.Empty;
+        public string KatholischeReligion { get; set; } = string.Empty;
+        public string EvangelischeReligion { get; set; } = string.Empty;
+        public string IslamischeReligion { get; set; } = string.Empty;
+        public string Literatur { get; set; } = string.Empty;
+
+
+
+
     }
 }
