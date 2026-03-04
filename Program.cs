@@ -103,7 +103,7 @@ namespace Schuelerverwaltung
             else
             {
                 /// Tabelle mit BetterConsoleTables erstellen
-                var table = new Table(new ColumnHeader[]
+                var table1 = new Table(new ColumnHeader[]
                 {
                 new ColumnHeader("ID"),
                 new ColumnHeader("Vorname"),
@@ -115,17 +115,36 @@ namespace Schuelerverwaltung
                 {
                     /// Wir zeigen nur den Anfang der GUID an, damit die Tabelle kompakt bleibt
                     string shortId = s.Id.ToString().Substring(0, 8);
-                    table.AddRow(shortId, s.Vorname, s.Nachname, s.Klasse);
+                    table1.AddRow(shortId, s.Vorname, s.Nachname, s.Klasse);
                 }
                 
-                Console.WriteLine(table.ToString());
+                Console.WriteLine(table1.ToString());
 
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Gefundene Einträge: {ergebnisse.Count()}");
                 Console.ResetColor();
             }
 
-            Console.WriteLine("\nBeliebige Taste drücken für Menü...");
+            Console.WriteLine("\nWen wollen Sie einsehen?:");
+
+            String schuelerNotenFaecherEinsehen = Console.ReadLine();
+
+            var ergebnisse1 = manager.Suche(schuelerNotenFaecherEinsehen);
+
+            var table = new Table(new ColumnHeader[]
+                {
+                new ColumnHeader("Fächer"),
+                });
+
+            foreach (var s in ergebnisse1)
+            {
+                /// Wir zeigen nur den Anfang der GUID an, damit die Tabelle kompakt bleibt
+                string shortId = s.Id.ToString().Substring(0, 8);
+                table.AddRow(s.Faecher);
+            }
+
+            Console.WriteLine(table.ToString());
+
             Console.ReadKey(true);
         }
 

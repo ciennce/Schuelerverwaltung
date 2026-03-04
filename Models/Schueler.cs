@@ -26,5 +26,11 @@
         /// Klasse, in der der Schüler eingeschrieben ist.
         /// </summary>
         public string Klasse { get; set; }
+
+        /// Notenschnitt des Schülers.
+        
+        public int Notenschnitt { get; set; }
+        
+        public String Faecher { get; set; }
     }
 }
