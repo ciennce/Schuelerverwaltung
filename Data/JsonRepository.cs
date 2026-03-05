@@ -3,6 +3,9 @@ using System.Text.Json;
 
 namespace Schuelerverwaltung.Data
 {
+    /// <summary>
+    /// CRUD-Operationen für Schüler, die in einer JSON-Datei gespeichert werden.
+    /// </summary>
     internal class JsonRepository : ISchulerRepository
     {
         private const string dateiPfad = "schueler.json";

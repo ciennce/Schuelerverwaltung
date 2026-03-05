@@ -2,6 +2,9 @@
 
 namespace Schuelerverwaltung.Data
 {
+    /// <summary>
+    /// CRUD-Oprationen für Schüler
+    /// </summary>
     internal interface ISchulerRepository
     {
         /// <summary>
