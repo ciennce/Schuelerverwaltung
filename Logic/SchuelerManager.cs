@@ -43,7 +43,6 @@ namespace Schuelerverwaltung.Logic
             return schuelerListe;
         }
 
-
         //Suche eines Schülers nach Keywords in Vorname, Nachname oder Klasse
         public IEnumerable<Schueler> Suche(string query)
         {
@@ -90,7 +89,5 @@ namespace Schuelerverwaltung.Logic
                 SpeichereDaten();
             }
         }
-
-
     }
 }
