@@ -133,6 +133,27 @@ namespace Schuelerverwaltung
             }
             var ergebnisse1 = manager.Suche(schuelerNotenFaecherEinsehen);
 
+            
+
+            
+
+            /// Noch Fehler vorhanden. Wenn sich etwas doppelt bei der eingabe werden die Noten und Fächer von beiden Schülern angezeigt.
+            /// Es wird nicht unterschieden welcher Schüler gemeint ist. Es werden die Noten und Fächer von beiden Schülern angezeigt.
+
+            foreach (var s in ergebnisse1)
+            {
+                SchuelerAnzeigen(s);
+
+                
+            }
+
+
+
+            Console.ReadKey(true);
+        }
+
+        private static void SchuelerAnzeigen(Schueler s)
+        {
             var headers = new ColumnHeader[] {
                 new ColumnHeader("Fach"),
                 new ColumnHeader("Note"),
@@ -140,42 +161,32 @@ namespace Schuelerverwaltung
 
             var table = new Table(headers);
 
-            /// Noch Fehler vorhanden. Wenn sich etwas doppelt bei der eingabe werden die Noten und Fächer von beiden Schülern angezeigt.
-            /// Es wird nicht unterschieden welcher Schüler gemeint ist. Es werden die Noten und Fächer von beiden Schülern angezeigt.
-
-            foreach (var s in ergebnisse1)
-            {
-                Console.WriteLine($"Noten und Fächer von {s.Vorname} {s.Nachname}:");
-                table.AddRow(nameof(s.Mathematik), s.Mathematik);
-                table.AddRow(nameof(s.Deutsch), s.Deutsch);
-                table.AddRow(nameof(s.Englisch), s.Englisch);
-                table.AddRow(nameof(s.Biologie), s.Biologie);
-                table.AddRow(nameof(s.Geschichte), s.Geschichte);
-                table.AddRow(nameof(s.Kunst), s.Kunst);
-                table.AddRow(nameof(s.Informatik), s.Informatik);
-                table.AddRow(nameof(s.Sport), s.Sport);
-                table.AddRow(nameof(s.Musik), s.Musik);
-                table.AddRow(nameof(s.Physik), s.Physik);
-                table.AddRow(nameof(s.Chemie), s.Chemie);
-                table.AddRow(nameof(s.Sozialwissenschaften), s.Sozialwissenschaften);
-                table.AddRow(nameof(s.Französisch), s.Französisch);
-                table.AddRow(nameof(s.Latein), s.Latein);
-                table.AddRow(nameof(s.Spanisch), s.Spanisch);
-                table.AddRow(nameof(s.Philosophie), s.Philosophie);
-                table.AddRow(nameof(s.KatholischeReligion), s.KatholischeReligion);
-                table.AddRow(nameof(s.EvangelischeReligion), s.EvangelischeReligion);
-                table.AddRow(nameof(s.IslamischeReligion), s.IslamischeReligion);
-                table.AddRow(nameof(s.Literatur), s.Literatur);
-                Console.WriteLine();
-                Console.WriteLine();
-
-
-            }
-
+            Console.WriteLine($"Noten und Fächer von {s.Vorname} {s.Nachname}:");
+            table.AddRow(nameof(s.Mathematik), s.Mathematik);
+            table.AddRow(nameof(s.Deutsch), s.Deutsch);
+            table.AddRow(nameof(s.Englisch), s.Englisch);
+            table.AddRow(nameof(s.Biologie), s.Biologie);
+            table.AddRow(nameof(s.Geschichte), s.Geschichte);
+            table.AddRow(nameof(s.Kunst), s.Kunst);
+            table.AddRow(nameof(s.Informatik), s.Informatik);
+            table.AddRow(nameof(s.Sport), s.Sport);
+            table.AddRow(nameof(s.Musik), s.Musik);
+            table.AddRow(nameof(s.Physik), s.Physik);
+            table.AddRow(nameof(s.Chemie), s.Chemie);
+            table.AddRow(nameof(s.Sozialwissenschaften), s.Sozialwissenschaften);
+            table.AddRow(nameof(s.Französisch), s.Französisch);
+            table.AddRow(nameof(s.Latein), s.Latein);
+            table.AddRow(nameof(s.Spanisch), s.Spanisch);
+            table.AddRow(nameof(s.Philosophie), s.Philosophie);
+            table.AddRow(nameof(s.KatholischeReligion), s.KatholischeReligion);
+            table.AddRow(nameof(s.EvangelischeReligion), s.EvangelischeReligion);
+            table.AddRow(nameof(s.IslamischeReligion), s.IslamischeReligion);
+            table.AddRow(nameof(s.Literatur), s.Literatur);
+            Console.WriteLine();
+            Console.WriteLine();
             Console.WriteLine(table.ToString());
-
-            Console.ReadKey(true);
         }
+
         static void SchuelerHinzufuegen()
         {
             Console.Clear();
