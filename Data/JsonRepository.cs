@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace Schuelerverwaltung.Data
 {
-    internal class JsonRepository
+    internal class JsonRepository : ISchulerRepository
     {
         private const string dateiPfad = "schueler.json";
 

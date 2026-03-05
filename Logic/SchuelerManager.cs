@@ -6,9 +6,9 @@ namespace Schuelerverwaltung.Logic
 {
     class SchuelerManager
     {
-        private readonly JsonRepository repository;
+        private readonly ISchulerRepository repository;
 
-        public SchuelerManager(JsonRepository repository)
+        public SchuelerManager(ISchulerRepository repository)
         {
             this.repository = repository;
         }
