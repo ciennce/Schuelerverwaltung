@@ -1,51 +1,26 @@
-﻿using Schuelerverwaltung.Models;
-using System.Text.Json;
+﻿using Schuelerverwaltung.Data;
+using Schuelerverwaltung.Models;
 
 namespace Schuelerverwaltung.Logic
 {
     public class SchuelerManager
     {
-
-        private List<Schueler> schuelerListe = new List<Schueler>();
-        private readonly string dateiPfad = "schueler.json";
+        private readonly JsonRepository repository = new JsonRepository();
 
         public SchuelerManager()
         {
-            // Versuch die Daten zu laden
-            LadeDaten();
-        }
-
-        private void SpeichereDaten()
-        {
-            try
-            {
-                var options = new JsonSerializerOptions { WriteIndented = true };
-                string json = JsonSerializer.Serialize(schuelerListe, options);
-                File.WriteAllText(dateiPfad, json);
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine($"Fehler beim Speichern: {exception.Message}");
-            }
-        }
-
-        private void LadeDaten()
-        {
-            if (File.Exists(dateiPfad))
-            {
-                string json = File.ReadAllText(dateiPfad);
-                schuelerListe = JsonSerializer.Deserialize<List<Schueler>>(json) ?? new List<Schueler>();
-            }
         }
 
         public IEnumerable<Schueler> GetAll()
         {
-            return schuelerListe;
+            return repository.Read();
         }
 
         //Suche eines Schülers nach Keywords in Vorname, Nachname oder Klasse
         public IEnumerable<Schueler> Suche(string query)
         {
+            var schuelerListe = repository.Read();
+
             if (string.IsNullOrWhiteSpace(query))
                 return schuelerListe;
 
@@ -59,35 +34,17 @@ namespace Schuelerverwaltung.Logic
 
         public void Add(Schueler neuerSchueler)
         {
-            schuelerListe.Add(neuerSchueler);
-            // Nach jedem Hinzufügen speichern
-            SpeichereDaten();
+            repository.Insert(neuerSchueler);
         }
 
         public void Delete(string idEingabe)
         {
-            // Sucht den Schüler, dessen ID mit der Eingabe beginnt.
-            var schueler = schuelerListe.FirstOrDefault(s => s.Id.ToString().StartsWith(idEingabe, StringComparison.OrdinalIgnoreCase));
-
-            if (schueler != null)
-            {
-                schuelerListe.Remove(schueler);
-
-                // JSON wird aktualisiert, nachdem der Schüler gelöscht wurde
-                string text = JsonSerializer.Serialize(schuelerListe);
-                File.WriteAllText("daten.json", text);
-                SpeichereDaten();
-            }
+            repository.Delete(idEingabe);
         }
 
         public void Update(Schueler aktualisiereSchueler)
         {
-            var index = schuelerListe.FindIndex(s => s.Id == aktualisiereSchueler.Id);
-            if (index != -1)
-            {
-                schuelerListe[index] = aktualisiereSchueler;
-                SpeichereDaten();
-            }
+            repository.Update(aktualisiereSchueler);
         }
     }
 }
