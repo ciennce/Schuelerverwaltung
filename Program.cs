@@ -71,20 +71,16 @@ namespace Schuelerverwaltung
 
             Console.WriteLine(table.ToString());
         }
-
         static void KonsoleVorbereiten(string titel)
         {
             Console.Clear();
             Console.WriteLine($"--- {titel} ---");
         }
-
-
-
         static void SchuelerEinsehen()
         {
             Console.Clear();
             Console.WriteLine("=== SCHÜLER-SUCHE ===");
-            Console.WriteLine("Hinweis: Suche nach Vorname, Nachname oder Klasse möglich.");
+            Console.WriteLine("Hinweis: Suche nach Vorname, Nachname oder Klasse möglich.\n Alle Anzeigen: [ENTER]\n");
             Console.Write("Suchbegriff eingeben: ");
 
             string input = Console.ReadLine();
@@ -180,13 +176,17 @@ namespace Schuelerverwaltung
 
             Console.ReadKey(true);
         }
-
-
-
         static void SchuelerHinzufuegen()
         {
             Console.Clear();
             Console.WriteLine("=== NEUEN SCHÜLER ANLEGEN ===");
+
+
+            Console.WriteLine("Zurück zum Hauptmenü: [ENTER]\n\nWeiter: [ANY]\n");
+            if (Console.ReadKey(true).Key == ConsoleKey.Enter)
+            {
+                return;
+            }
 
             /// Ein neues Schueler-Objekt erstellen
             Schueler s = new Schueler();
@@ -273,13 +273,74 @@ namespace Schuelerverwaltung
             Console.WriteLine("Drücke eine Taste, um zum Menü zurückzukehren...(ENTER)");
             Console.ReadKey(true);
         }
-
-        static void SchuelerBearbeiten()
+        static void SchuelerBearbeiten() 
         {
-            Console.WriteLine("Schüler bearbeiten");
+            Console.Clear();
+            Console.WriteLine("=== SCHÜLER BEARBEITEN ===");
+            Console.Write("Geben Sie die ID (oder den Anfang) des Schülers ein: ");
+            string idSuche = Console.ReadLine();
+
+            //Den Schüler finden (wir nutzen die ID-Logik aus Delete)
+            var schueler = manager.GetAll().FirstOrDefault(s => s.Id.ToString().StartsWith(idSuche, StringComparison.OrdinalIgnoreCase)); //hilfe von KI bekommen.
+
+            if (schueler == null)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Schüler wurde nicht gefunden.");
+                Console.ResetColor();
+                Console.ReadKey();
+                return;
+            }
+
+            Console.WriteLine($"\nBearbeite: {schueler.Vorname} {schueler.Nachname}");
+            Console.WriteLine("Hinweis: ENTER drücken, um aktuellen Wert zu behalten.\n");
+
+            //Hilfsfunktion für die Eingabe
+            string UpdateFeld(string name, string aktuellerWert)
+            {
+                Console.Write($"{name} [{aktuellerWert}]: ");
+                string eingabe = Console.ReadLine();
+                return string.IsNullOrWhiteSpace(eingabe) ? aktuellerWert : eingabe;
+            }
+
+            //Daten aktualisieren
+            schueler.Vorname = UpdateFeld("Vorname", schueler.Vorname);
+            schueler.Nachname = UpdateFeld("Nachname", schueler.Nachname);
+            schueler.Klasse = UpdateFeld("Klasse", schueler.Klasse);
+
+            //Noten aktualisieren
+
+            Console.WriteLine("\n--- Noten ---");
+            schueler.Mathematik = UpdateFeld("Mathematik", schueler.Mathematik);
+            schueler.Deutsch = UpdateFeld("Deutsch", schueler.Deutsch);
+            schueler.Englisch = UpdateFeld("Englisch", schueler.Englisch);
+            schueler.Biologie = UpdateFeld("Biologie", schueler.Biologie);
+            schueler.Geschichte = UpdateFeld("Geschichte", schueler.Geschichte);
+            schueler.Kunst = UpdateFeld("Kunst", schueler.Kunst);
+            schueler.Informatik = UpdateFeld("Informatik", schueler.Informatik);
+            schueler.Sport = UpdateFeld("Sport", schueler.Sport);
+            schueler.Musik = UpdateFeld("Musik", schueler.Musik);
+            schueler.Physik = UpdateFeld("Physik", schueler.Physik);
+            schueler.Chemie = UpdateFeld("Chemie", schueler.Chemie);
+            schueler.Sozialwissenschaften = UpdateFeld("Sozialwissenschaften", schueler.Sozialwissenschaften);
+            schueler.Französisch = UpdateFeld("Französisch", schueler.Französisch);
+            schueler.Latein = UpdateFeld("Latein", schueler.Latein);
+            schueler.Spanisch = UpdateFeld("Spanisch", schueler.Spanisch);
+            schueler.Philosophie = UpdateFeld("Philosophie", schueler.Philosophie);
+            schueler.KatholischeReligion = UpdateFeld("Katholische Religion", schueler.KatholischeReligion);
+            schueler.EvangelischeReligion = UpdateFeld("Evangelische Religion", schueler.EvangelischeReligion);
+            schueler.IslamischeReligion = UpdateFeld("Islamische Religion", schueler.IslamischeReligion);
+            schueler.Literatur = UpdateFeld("Literatur", schueler.Literatur);
+            schueler.Notenschnitt = int.TryParse(UpdateFeld("Notenschnitt", schueler.Notenschnitt.ToString()), out int ns) ? ns : schueler.Notenschnitt;
+
+
+            manager.Update(schueler);
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nÄnderungen erfolgreich gespeichert!");
+            Console.ResetColor();
             Console.ReadKey(true);
         }
-
         static void SchuelerLoeschen()
         {
             Console.Clear();

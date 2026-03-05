@@ -22,3 +22,5 @@ SchuelerVerwaltung/
 10.Implementierung der Funktion weiteres Einsehen der Fächer eines Schülers in Program.cs.
 11. Implentierung der Funktion "Hinzufügen" eines Schülers in Program.cs.
 12. Json Speicherung.
+13. Implementierung der Funktion "Löschen" eines Schülers in Program.cs.
+14. Implementierung der Funktion "Bearbeiten"

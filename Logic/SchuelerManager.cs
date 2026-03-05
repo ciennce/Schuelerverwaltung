@@ -41,15 +41,6 @@ namespace Schuelerverwaltung.Logic
              string json = File.ReadAllText(dateiPfad);
              schuelerListe = JsonSerializer.Deserialize<List<Schueler>>(json) ?? new List<Schueler>();
             }
-            else
-            {
-                // Beispiel-Daten nur hinzufügen, wenn noch keine Datei existiert
-                schuelerListe.Add(new Schueler { Vorname = "Max", Nachname = "Mustermann", Klasse = "10A", Mathematik = "2", Deutsch = "2+", Englisch = "3-", Biologie = "4", Geschichte = "3" });
-                schuelerListe.Add(new Schueler { Vorname = "Laura", Nachname = "Schmidt", Klasse = "10C", Mathematik = "1", Deutsch = "2", Englisch = "2+", Biologie = "4", Geschichte = "3" });
-                schuelerListe.Add(new Schueler { Vorname = "Tim", Nachname = "Reuter", Klasse = "5F", Mathematik = "4", Deutsch = "5", Englisch = "2", Biologie = "4", Geschichte = "3" });
-
-                SpeichereDaten();
-            }
         }
 
         public IEnumerable<Schueler> GetAll()
@@ -91,6 +82,17 @@ namespace Schuelerverwaltung.Logic
                 // JSON wird aktualisiert, nachdem der Schüler gelöscht wurde
                 string text = JsonSerializer.Serialize(schuelerListe);
                 File.WriteAllText("daten.json", text);
+                SpeichereDaten();
+            }
+        }
+
+        public void Update(Schueler aktualisiereSchueler)
+        {
+            var index = schuelerListe.FindIndex(s => s.Id == aktualisiereSchueler.Id);
+            if (index != -1)
+            {
+                schuelerListe[index] = aktualisiereSchueler;
+                SpeichereDaten(); 
             }
         }
 
