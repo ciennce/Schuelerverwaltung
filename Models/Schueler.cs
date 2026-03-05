@@ -28,9 +28,9 @@
         public string Klasse { get; set; } = string.Empty;
 
         /// Notenschnitt des Schülers.
-        
+
         public int Notenschnitt { get; set; }
-        
+
         public string Faecher { get; set; } = string.Empty;
 
 
@@ -41,9 +41,9 @@
         public string Englisch { get; set; } = string.Empty;
         public string Biologie { get; set; } = string.Empty;
         public string Geschichte { get; set; } = string.Empty;
-        public string Kunst { get; set; } = string.Empty; 
+        public string Kunst { get; set; } = string.Empty;
         public string Informatik { get; set; } = string.Empty;
-        public string Sport { get; set; } = string.Empty;  
+        public string Sport { get; set; } = string.Empty;
         public string Musik { get; set; } = string.Empty;
         public string Physik { get; set; } = string.Empty;
         public string Chemie { get; set; } = string.Empty;

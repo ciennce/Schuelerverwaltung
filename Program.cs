@@ -1,7 +1,5 @@
 ﻿using BetterConsoleTables;
 using Schuelerverwaltung.Models;
-using System.Data.Common;
-using System.Drawing;
 
 namespace Schuelerverwaltung
 {
@@ -88,7 +86,7 @@ namespace Schuelerverwaltung
             /// Den Manager nach Ergebnissen fragen
             var ergebnisse = manager.Suche(input);
 
-            Console.WriteLine(); 
+            Console.WriteLine();
 
             if (!ergebnisse.Any())
             {
@@ -113,7 +111,7 @@ namespace Schuelerverwaltung
                     string shortId = s.Id.ToString().Substring(0, 8);
                     table1.AddRow(shortId, s.Vorname, s.Nachname, s.Klasse);
                 }
-                
+
                 Console.WriteLine(table1.ToString());
 
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -133,9 +131,9 @@ namespace Schuelerverwaltung
             }
             var ergebnisse1 = manager.Suche(schuelerNotenFaecherEinsehen);
 
-            
 
-            
+
+
 
             /// Noch Fehler vorhanden. Wenn sich etwas doppelt bei der eingabe werden die Noten und Fächer von beiden Schülern angezeigt.
             /// Es wird nicht unterschieden welcher Schüler gemeint ist. Es werden die Noten und Fächer von beiden Schülern angezeigt.
@@ -144,7 +142,7 @@ namespace Schuelerverwaltung
             {
                 SchuelerAnzeigen(s);
 
-                
+
             }
 
 
@@ -284,7 +282,7 @@ namespace Schuelerverwaltung
             Console.WriteLine("Drücke eine Taste, um zum Menü zurückzukehren...(ENTER)");
             Console.ReadKey(true);
         }
-        static void SchuelerBearbeiten() 
+        static void SchuelerBearbeiten()
         {
             Console.Clear();
             Console.WriteLine("=== SCHÜLER BEARBEITEN ===");

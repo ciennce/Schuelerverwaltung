@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Schuelerverwaltung.Models;
-using System.IO;
+﻿using Schuelerverwaltung.Models;
 using System.Text.Json;
 
 namespace Schuelerverwaltung.Logic
 {
     public class SchuelerManager
     {
-        
+
         private List<Schueler> schuelerListe = new List<Schueler>();
         private readonly string dateiPfad = "schueler.json";
 
@@ -24,7 +19,7 @@ namespace Schuelerverwaltung.Logic
         {
             try
             {
-                var options = new JsonSerializerOptions { WriteIndented = true }; 
+                var options = new JsonSerializerOptions { WriteIndented = true };
                 string json = JsonSerializer.Serialize(schuelerListe, options);
                 File.WriteAllText(dateiPfad, json);
             }
@@ -37,9 +32,9 @@ namespace Schuelerverwaltung.Logic
         private void LadeDaten()
         {
             if (File.Exists(dateiPfad))
-            {                
-             string json = File.ReadAllText(dateiPfad);
-             schuelerListe = JsonSerializer.Deserialize<List<Schueler>>(json) ?? new List<Schueler>();
+            {
+                string json = File.ReadAllText(dateiPfad);
+                schuelerListe = JsonSerializer.Deserialize<List<Schueler>>(json) ?? new List<Schueler>();
             }
         }
 
@@ -92,7 +87,7 @@ namespace Schuelerverwaltung.Logic
             if (index != -1)
             {
                 schuelerListe[index] = aktualisiereSchueler;
-                SpeichereDaten(); 
+                SpeichereDaten();
             }
         }
 
