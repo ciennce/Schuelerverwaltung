@@ -179,7 +179,44 @@ namespace Schuelerverwaltung
 
         static void SchuelerHinzufuegen()
         {
-            Console.WriteLine("Schüler hinzufügen");
+            Console.Clear();
+            Console.WriteLine("=== NEUEN SCHÜLER ANLEGEN ===");
+
+            /// Ein neues Schueler-Objekt erstellen
+            Schueler s = new Schueler();
+
+            Console.Write("Vorname: ");
+            s.Vorname = Console.ReadLine();
+
+            Console.Write("Nachname: ");
+            s.Nachname = Console.ReadLine();
+
+            Console.Write("Klasse (z.B. 10A): ");
+            s.Klasse = Console.ReadLine();
+
+            /// Noten abfragen (Beispiel für die wichtigsten Fächer)
+            Console.WriteLine("\nNoten eingeben (leer lassen, falls nicht belegt):");
+
+            Console.Write("Mathematik: ");
+            s.Mathematik = Console.ReadLine();
+
+            Console.Write("Deutsch: ");
+            s.Deutsch = Console.ReadLine();
+
+            Console.Write("Englisch: ");
+            s.Englisch = Console.ReadLine();
+
+            Console.Write("Informatik: ");
+            s.Informatik = Console.ReadLine();
+
+            /// Den fertigen Schüler an den Manager übergeben
+            manager.Add(s);
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nSchüler erfolgreich gespeichert!");
+            Console.ResetColor();
+
+            Console.WriteLine("Drücke eine Taste, um zum Menü zurückzukehren...");
             Console.ReadKey(true);
         }
 

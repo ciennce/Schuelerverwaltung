@@ -19,4 +19,6 @@ SchuelerVerwaltung/
 7. Funktionalität für die Verwaltung von Schülern implementiert (Hinzufügen, Anzeigen, Suchen, Löschen) Läuft noch nicht einwandfrei. Keine Speicherung vorhanden.
 8. Testen der Funktionen in Program.cs.
 9. Implementierung der Funktion "Einsehen" der Schülerliste in Program.cs.
-10. 
+10.Implementierung der Funktion weiteres Einsehen der Fächer eines Schülers in Program.cs.
+11. Implentierung der Funktion "Hinzufügen" eines Schülers in Program.cs.
+12. Json Speicherung.
