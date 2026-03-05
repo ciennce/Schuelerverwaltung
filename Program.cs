@@ -31,21 +31,25 @@ namespace Schuelerverwaltung
                         /// Schüler einsehen
                         SchuelerEinsehen();
                         break;
+
                     case '2':
                         KonsoleVorbereiten("SCHÜLER HINZUFÜGEN");
                         /// Schüler hinzufügen
                         SchuelerHinzufuegen();
                         break;
+
                     case '3':
                         KonsoleVorbereiten("SCHÜLER BEARBEITEN");
                         /// Schüler bearbeiten
                         SchuelerBearbeiten();
                         break;
+
                     case '4':
                         KonsoleVorbereiten("SCHÜLER LÖSCHEN");
                         /// Schüler löschen
                         SchuelerLoeschen();
                         break;
+
                     case 'q': /// Beenden (Das Programm)
                         programmLaeuft = false;
                         break;
@@ -57,6 +61,7 @@ namespace Schuelerverwaltung
         {
             Console.Clear();
             Console.WriteLine("=== SCHÜLERVERWALTUNG v1.0 ===");
+
             var headers = new ColumnHeader[] {
                 new ColumnHeader("Einsehen [1]"),
                 new ColumnHeader("Hinzufügen [2]"),
@@ -64,16 +69,18 @@ namespace Schuelerverwaltung
                 new ColumnHeader("Löschen [4]"),
                 new ColumnHeader("Beenden [q]")
             };
-            var table = new Table(headers);
 
+            var table = new Table(headers);
 
             Console.WriteLine(table.ToString());
         }
+
         static void KonsoleVorbereiten(string titel)
         {
             Console.Clear();
             Console.WriteLine($"--- {titel} ---");
         }
+
         static void SchuelerEinsehen()
         {
             Console.Clear();
@@ -99,10 +106,10 @@ namespace Schuelerverwaltung
                 /// Tabelle mit BetterConsoleTables erstellen
                 var table1 = new Table(new ColumnHeader[]
                 {
-                new ColumnHeader("ID"),
-                new ColumnHeader("Vorname"),
-                new ColumnHeader("Nachname"),
-                new ColumnHeader("Klasse")
+                    new ColumnHeader("ID"),
+                    new ColumnHeader("Vorname"),
+                    new ColumnHeader("Nachname"),
+                    new ColumnHeader("Klasse"),
                 });
 
                 foreach (var s in ergebnisse)
@@ -121,7 +128,7 @@ namespace Schuelerverwaltung
 
             Console.WriteLine("\nWen wollen Sie einsehen? (Keiner = ENTER):");
 
-            String schuelerNotenFaecherEinsehen = Console.ReadLine();
+            string schuelerNotenFaecherEinsehen = Console.ReadLine();
 
             if (string.IsNullOrWhiteSpace(schuelerNotenFaecherEinsehen))
             {
@@ -129,30 +136,23 @@ namespace Schuelerverwaltung
                 Console.ReadKey(true);
                 return;
             }
+
             var ergebnisse1 = manager.Suche(schuelerNotenFaecherEinsehen);
-
-
-
-
 
             /// Noch Fehler vorhanden. Wenn sich etwas doppelt bei der eingabe werden die Noten und Fächer von beiden Schülern angezeigt.
             /// Es wird nicht unterschieden welcher Schüler gemeint ist. Es werden die Noten und Fächer von beiden Schülern angezeigt.
-
             foreach (var s in ergebnisse1)
             {
                 SchuelerAnzeigen(s);
-
-
             }
-
-
 
             Console.ReadKey(true);
         }
 
         private static void SchuelerAnzeigen(Schueler s)
         {
-            var headers = new ColumnHeader[] {
+            var headers = new ColumnHeader[]
+            {
                 new ColumnHeader("Fach"),
                 new ColumnHeader("Note"),
             };
@@ -190,8 +190,8 @@ namespace Schuelerverwaltung
             Console.Clear();
             Console.WriteLine("=== NEUEN SCHÜLER ANLEGEN ===");
 
-
             Console.WriteLine("Zurück zum Hauptmenü: [ENTER]\n\nWeiter: [ANY]\n");
+
             if (Console.ReadKey(true).Key == ConsoleKey.Enter)
             {
                 return;
@@ -282,6 +282,7 @@ namespace Schuelerverwaltung
             Console.WriteLine("Drücke eine Taste, um zum Menü zurückzukehren...(ENTER)");
             Console.ReadKey(true);
         }
+
         static void SchuelerBearbeiten()
         {
             Console.Clear();
@@ -342,7 +343,6 @@ namespace Schuelerverwaltung
             schueler.Literatur = UpdateFeld("Literatur", schueler.Literatur);
             schueler.Notenschnitt = int.TryParse(UpdateFeld("Notenschnitt", schueler.Notenschnitt.ToString()), out int ns) ? ns : schueler.Notenschnitt;
 
-
             manager.Update(schueler);
 
             Console.ForegroundColor = ConsoleColor.Green;
@@ -350,6 +350,7 @@ namespace Schuelerverwaltung
             Console.ResetColor();
             Console.ReadKey(true);
         }
+
         static void SchuelerLoeschen()
         {
             Console.Clear();
@@ -367,7 +368,5 @@ namespace Schuelerverwaltung
             Console.WriteLine("\nDrücken Sie eine Taste...");
             Console.ReadKey(true);
         }
-
-
     }
 }
