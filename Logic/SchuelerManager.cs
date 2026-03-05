@@ -3,12 +3,13 @@ using Schuelerverwaltung.Models;
 
 namespace Schuelerverwaltung.Logic
 {
-    public class SchuelerManager
+    class SchuelerManager
     {
-        private readonly JsonRepository repository = new JsonRepository();
+        private readonly JsonRepository repository;
 
-        public SchuelerManager()
+        public SchuelerManager(JsonRepository repository)
         {
+            this.repository = repository;
         }
 
         public IEnumerable<Schueler> GetAll()

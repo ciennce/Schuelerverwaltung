@@ -3,6 +3,7 @@ using Schuelerverwaltung.Models;
 
 namespace Schuelerverwaltung
 {
+    using Schuelerverwaltung.Data;
     using Schuelerverwaltung.Logic;
     using System;
 
@@ -11,7 +12,7 @@ namespace Schuelerverwaltung
         /// <summary>
         /// Manager-Instanz, die die gesamte Logik für die Schülerverwaltung enthält.
         /// </summary>
-        static SchuelerManager manager = new SchuelerManager();
+        static SchuelerManager manager = new SchuelerManager(new JsonRepository());
 
         static void Main(string[] args)
         {
