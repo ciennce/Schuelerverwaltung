@@ -79,15 +79,18 @@ namespace Schuelerverwaltung.Logic
             SpeichereDaten();
         }
 
-        public void Delete(string nachname)
+        public void Delete(string idEingabe)
         {
-            // Sucht den ersten Schüler mit diesem Nachnamen
-            var schueler = schuelerListe.FirstOrDefault(s => s.Nachname.Equals(nachname, StringComparison.OrdinalIgnoreCase));
+            // Sucht den Schüler, dessen ID mit der Eingabe beginnt.
+            var schueler = schuelerListe.FirstOrDefault(s => s.Id.ToString().StartsWith(idEingabe, StringComparison.OrdinalIgnoreCase));
 
             if (schueler != null)
             {
                 schuelerListe.Remove(schueler);
-                SpeichereDaten(); 
+
+                // JSON wird aktualisiert, nachdem der Schüler gelöscht wurde
+                string text = JsonSerializer.Serialize(schuelerListe);
+                File.WriteAllText("daten.json", text);
             }
         }
 

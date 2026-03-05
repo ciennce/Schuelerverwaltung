@@ -284,14 +284,14 @@ namespace Schuelerverwaltung
         {
             Console.Clear();
             Console.WriteLine("=== SCHÜLER LÖSCHEN ===");
-            Console.Write("Geben Sie den Nachnamen des Schülers ein, der gelöscht werden soll: ");
-            string name = Console.ReadLine();
+            Console.Write("Geben Sie die ID (oder den Anfang der ID) ein: ");
+            string id = Console.ReadLine();
 
             // Lösch-Befehl im Manager aufrufen
-            manager.Delete(name);
+            manager.Delete(id);
 
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"\nDer Schüler {name} wurde gelöscht.");
+            Console.WriteLine($"\nDer Schüler mit der ID '{id}' wurde (falls gefunden) gelöscht.");
             Console.ResetColor();
 
             Console.WriteLine("\nDrücken Sie eine Taste...");
