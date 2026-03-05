@@ -10,7 +10,7 @@ namespace Schuelerverwaltung.Logic
 {
     public class SchuelerManager
     {
-        // Wir entfernen 'readonly', damit wir die Liste beim Laden neu zuweisen können
+        
         private List<Schueler> schuelerListe = new List<Schueler>();
         private readonly string dateiPfad = "schueler.json";
 
@@ -78,5 +78,19 @@ namespace Schuelerverwaltung.Logic
             // Nach jedem Hinzufügen speichern
             SpeichereDaten();
         }
+
+        public void Delete(string nachname)
+        {
+            // Sucht den ersten Schüler mit diesem Nachnamen
+            var schueler = schuelerListe.FirstOrDefault(s => s.Nachname.Equals(nachname, StringComparison.OrdinalIgnoreCase));
+
+            if (schueler != null)
+            {
+                schuelerListe.Remove(schueler);
+                SpeichereDaten(); 
+            }
+        }
+
+
     }
 }

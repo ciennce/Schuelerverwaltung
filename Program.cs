@@ -125,10 +125,16 @@ namespace Schuelerverwaltung
                 Console.ResetColor();
             }
 
-            Console.WriteLine("\nWen wollen Sie einsehen?:");
+            Console.WriteLine("\nWen wollen Sie einsehen? (Keiner = ENTER):");
 
             String schuelerNotenFaecherEinsehen = Console.ReadLine();
 
+            if (string.IsNullOrWhiteSpace(schuelerNotenFaecherEinsehen))
+            {
+                Console.WriteLine("Keine Eingabe erkannt. Rückkehr zum Hauptmenü...");
+                Console.ReadKey(true);
+                return;
+            }
             var ergebnisse1 = manager.Suche(schuelerNotenFaecherEinsehen);
 
             var headers = new ColumnHeader[] {
@@ -206,8 +212,56 @@ namespace Schuelerverwaltung
             Console.Write("Englisch: ");
             s.Englisch = Console.ReadLine();
 
+            Console.Write("Biologie: ");
+            s.Informatik = Console.ReadLine();
+
+            Console.Write("Geschichte: ");
+            s.Geschichte = Console.ReadLine();
+
+            Console.Write("Kunst: ");
+            s.Kunst = Console.ReadLine();
+
             Console.Write("Informatik: ");
             s.Informatik = Console.ReadLine();
+
+            Console.Write("Sport: ");
+            s.Sport = Console.ReadLine();
+
+            Console.Write("Musik: ");
+            s.Musik = Console.ReadLine();
+
+            Console.Write("Physik: ");
+            s.Physik = Console.ReadLine();
+
+            Console.Write("Chemie: ");
+            s.Chemie = Console.ReadLine();
+
+            Console.Write("Sozialwissenschaften: ");
+            s.Sozialwissenschaften = Console.ReadLine();
+
+            Console.Write("Französisch: ");
+            s.Französisch = Console.ReadLine();
+
+            Console.Write("Latein: ");
+            s.Latein = Console.ReadLine();
+
+            Console.Write("Spanisch: ");
+            s.Spanisch = Console.ReadLine();
+
+            Console.Write("Philosophie: ");
+            s.Philosophie = Console.ReadLine();
+
+            Console.Write("Katholische Religion: ");
+            s.KatholischeReligion = Console.ReadLine();
+
+            Console.Write("Evangelische Religion: ");
+            s.EvangelischeReligion = Console.ReadLine();
+
+            Console.Write("Islamische Religion: ");
+            s.IslamischeReligion = Console.ReadLine();
+
+            Console.Write("Literatur: ");
+            s.Literatur = Console.ReadLine();
 
             /// Den fertigen Schüler an den Manager übergeben
             manager.Add(s);
@@ -216,7 +270,7 @@ namespace Schuelerverwaltung
             Console.WriteLine("\nSchüler erfolgreich gespeichert!");
             Console.ResetColor();
 
-            Console.WriteLine("Drücke eine Taste, um zum Menü zurückzukehren...");
+            Console.WriteLine("Drücke eine Taste, um zum Menü zurückzukehren...(ENTER)");
             Console.ReadKey(true);
         }
 
@@ -228,7 +282,19 @@ namespace Schuelerverwaltung
 
         static void SchuelerLoeschen()
         {
-            Console.WriteLine("Schüler löschen");
+            Console.Clear();
+            Console.WriteLine("=== SCHÜLER LÖSCHEN ===");
+            Console.Write("Geben Sie den Nachnamen des Schülers ein, der gelöscht werden soll: ");
+            string name = Console.ReadLine();
+
+            // Lösch-Befehl im Manager aufrufen
+            manager.Delete(name);
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"\nDer Schüler {name} wurde gelöscht.");
+            Console.ResetColor();
+
+            Console.WriteLine("\nDrücken Sie eine Taste...");
             Console.ReadKey(true);
         }
 
